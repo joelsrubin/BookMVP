@@ -11,7 +11,7 @@ export default function Home({ navigation }) {
   return (
     <Context.Consumer>
       {context => context.data ? (<View style={styles.container}>
-        <Button width='100px'
+        <Button
           onPress={() => navigation.navigate('Books')}
           title={context.data.results.list_name}>
         </Button>
