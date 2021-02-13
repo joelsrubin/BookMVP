@@ -4,10 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './components/Home.js'
-import Books from './components/Books.js'
-import { API } from './components/utils.js';
-import BooksContext from './context.js'
+import Menu from './components/Menu'
+import Home from './components/Home'
+import Books from './components/Books'
+import { API } from './components/utils';
+import BooksContext from './context'
 
 import axios from 'axios';
 
@@ -17,27 +18,40 @@ const Stack = createStackNavigator()
 export default function App() {
 
   const [bestSellers, setBestSellers] = useState(null)
+  const [genre, setGenre] = useState('hardcover-fiction')
   useEffect(() => {
     const fetchBooks = () => {
-      axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-nonfiction.json?api-key=${API}`)
+      axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/${genre}.json?api-key=${API}`)
         .then((results) => {
+          console.log(results)
           setBestSellers(results.data)
         })
     }
     fetchBooks()
-  }, [])
+  }, [genre])
+
+  const genreClick = (val) => {
+    setGenre(val)
+  }
 
   return (
     <BooksContext.Provider
       value={{
-        data: bestSellers
+        data: bestSellers,
+        handler: genreClick
       }}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{ title: 'BookEnds' }} />
+            options={{
+              title: 'Bookish'
+            }} />
+          < Stack.Screen
+            name="Menu"
+            component={Menu}
+            options={{ title: 'Menu' }} />
           <Stack.Screen name="Books"
             component={Books}
             options={{ title: 'Books' }} />
@@ -50,7 +64,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    fontSize: '26px',
+    fontSize: 30,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
