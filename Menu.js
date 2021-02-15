@@ -6,12 +6,14 @@ import { API } from './utils.js'
 import Context from '../context.js'
 
 
-export default function Menu({ navigation }) {
+export default function Menu({ route, navigation }) {
   const context = useContext(Context)
-
-  const click = (e) => {
+  const { name, id } = route.params
+  console.log(id)
+  const click = async (e) => {
     let val = e.target.innerHTML
-    context.handler(val)
+    await context.handler(val)
+    await navigation.navigate('Books')
   }
 
   if (context.data) {
@@ -20,11 +22,11 @@ export default function Menu({ navigation }) {
 
       <View style={styles.container}>
         <Button
-          onPress={() => navigation.navigate('Books')}
+          onPress={click}
           title='HardCover Fiction'>
         </Button>
         <Button
-          onPress={() => navigation.navigate('Books')}
+          onPress={click}
           title='HardCover Nonfiction'>
         </Button>
         <StatusBar style="auto" />
