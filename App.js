@@ -8,6 +8,7 @@ import { Animated, StyleSheet, Text, View } from 'react-native';
 // import Menu from './components/Menu'
 import Home from './components/Home'
 import Books from './components/Books'
+import Social from './components/Social'
 // import Donut from './components/Donut'
 import Progress from './components/Progress'
 import { API } from './components/utils';
@@ -27,6 +28,8 @@ export default function App() {
   const [goal, setGoal] = useState(0)
   const [read, setRead] = useState([])
   const [done, setDone] = useState([])
+  const [date, setDate] = useState(new Date)
+
 
 
 
@@ -76,7 +79,10 @@ export default function App() {
       console.log("read", read)
       console.log("val", val)
       let index = read.indexOf(val)
-      read.splice(index, 1)
+      let arr = read
+      arr.splice(index, 1)
+      setRead(arr)
+      // read.splice(index, 1)
     }
   }
 
@@ -110,7 +116,8 @@ export default function App() {
         done: done,
         name: name,
         goal: goal,
-        read: read
+        read: read,
+        date: date
       }}>
       <NavigationContainer>
         <Stack.Navigator>
@@ -118,12 +125,16 @@ export default function App() {
             name="Home"
             component={Home}
             options={{
-              title: 'Book It'
+              title: 'Log In'
             }} />
           < Stack.Screen
             name="Main"
             component={TabScreen}
             options={{ title: 'Main' }} />
+          <Stack.Screen
+            name="Social"
+            component={Social}
+            options={{ title: 'Let em Know' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </BooksContext.Provider>

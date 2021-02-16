@@ -3,21 +3,23 @@ import { Pressable, Modal, ScrollView, Image, SectionList, SafeAreaView, StatusB
 import Context from '../context.js'
 
 
-
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
-
 export default function List() {
   let context = useContext(Context);
   const [modalVisible, setModalVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
+  const checkStatus = () => {
+    if (context.done.length === context.goal - 1) {
+      console.log("context.read.length:", context.done.length)
+      console.log("context.goal:", context.goal)
+      console.log("true!")
+      setFinalModalVisible(!finalModal)
+    }
+  }
   const addToList = async (val) => {
     await context.setDone(val)
     await setModalVisible(!modalVisible)
+
   }
 
   const resetCurBook = async (val) => {
@@ -26,10 +28,10 @@ export default function List() {
   }
   const DATA = context.read || []
 
-  console.log(DATA)
 
   return (
     <SafeAreaView style={styles.container}>
+
       <Modal
         animationType="slide"
         transparent={true}

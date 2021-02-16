@@ -54,7 +54,7 @@ export default function Home({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Text style={styles.titleText}> Welcome </Text>
+      <Text style={styles.titleText}> Book It </Text>
       <Text style={styles.emoji}>📚📚</Text>
 
       <View style={styles.inputContainer}>

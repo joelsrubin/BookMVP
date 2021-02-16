@@ -7,6 +7,7 @@ const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
+
 const { width } = Dimensions.get('window')
 
 export default function Books() {
@@ -41,7 +42,7 @@ export default function Books() {
         }
       </ScrollView>
       <Text style={styles.sectionText}>Fiction</Text>
-      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal contentContainerStyle={{ width: `${100 * 15}%` }} >
+      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal  >
         {
           nonFict.map((book, i) => (
             <TouchableOpacity onPress={(e) => {
@@ -68,7 +69,6 @@ const styles = StyleSheet.create({
   main: {
     display: 'flex',
     flexDirection: 'column',
-
     height: '100%'
   },
   scroll: {
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
   container: {
     fontSize: 30,
     backgroundColor: '#fff',
-
 
   },
   titleText: {

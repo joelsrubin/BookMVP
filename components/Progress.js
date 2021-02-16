@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { StatusBar, Animated, ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Modal, StatusBar, Animated, ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
 import List from './List'
 import Context from '../context.js'
 
@@ -7,10 +7,14 @@ function Bar({ name, step, goal, height }) {
 
   const [width, setWidth] = useState(0)
   const getPercent = () => {
-
     let percent = (step / goal) * 100
     return percent
   }
+
+
+
+
+
   return (
     <>
       <Text style={styles.titleMain}>{name}'s Progress</Text>
@@ -18,7 +22,7 @@ function Bar({ name, step, goal, height }) {
         {step}/{goal}
       </Text>
       <View
-        onLayout={e => {
+        onLayout={(e) => {
           const newWidth = e.nativeEvent.layout.width;
           setWidth(newWidth)
         }}
@@ -40,6 +44,7 @@ function Bar({ name, step, goal, height }) {
             left: 0,
             top: 0,
 
+
           }} />
       </View>
     </>
@@ -48,17 +53,22 @@ function Bar({ name, step, goal, height }) {
 
 export default function Progress({ navigation, route }) {
   const context = useContext(Context)
+  let step = context.done.length
+
   const goal = context.goal || 10
   const name = context.name || 'Test'
-  console.log("goalprog:", goal)
+
+
   return (
 
     <View style={styles.container}>
       <StatusBar hidden />
-      <Bar name={name} style={styles.bar} step={context.done.length} goal={goal} height={20} />
+      <Bar name={name} style={styles.bar} step={step} goal={goal} height={20} />
       <List />
-
-      <Button onPress={context.clearRead} title="clear list"></Button>
+      <View style={styles.buttonCon}>
+        <Button onPress={() => { navigation.navigate('Social') }} title="all done?"></Button>
+        <Button onPress={context.clearRead} title="clear list"></Button>
+      </View>
     </View>
 
   )
@@ -66,6 +76,11 @@ export default function Progress({ navigation, route }) {
 
 
 const styles = StyleSheet.create({
+  buttonCon: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -88,5 +103,46 @@ const styles = StyleSheet.create({
   bar: {
     position: 'absolute',
     bottom: 0
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#2196F3",
+  },
+  buttonClose: {
+    backgroundColor: "white",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   }
 })

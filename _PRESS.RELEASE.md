@@ -9,20 +9,20 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 ## Heading ##
-  > Bookish
+  > Book It
 ## Sub-Heading ##
-  > A book club for strangers
+  > A simple way to self motivate to read
 ## Summary ##
-  > Bookish is like chatRoulette meets your local book club
+  > Using the NYT best-seller api, add books to your list and check them off as you go
 ## Problem ##
-  > It's hard to come together in person right now and Bookish provides a safe alternative.
+  > It can be hard to make time to read when we're so consumed by screens.
 ## Solution ##
-  > Folks can select their book off the NYT best sellers list (fiction and non) and they're immediately placed in a room with complete strangers to talk about their selection
+  > Book It is a fun way to see what's popular and to challenge yourself to read something new.
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > You simply give your name and your goal, select books for your to-read list, and check them off as you go.
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  >
