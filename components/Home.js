@@ -58,11 +58,11 @@ export default function Home({ navigation }) {
       <Text style={styles.emoji}>📚📚</Text>
 
       <View style={styles.inputContainer}>
-        <Text style={{ fontFamily: 'menlo' }}>Name</Text>
+        <Text >Name</Text>
         <TextInput textAlign={'center'} style={styles.input}
           onChangeText={text => context.setName(text)}
         ></TextInput>
-        <Text style={{ fontFamily: 'menlo' }}>Goal</Text>
+        <Text >Goal</Text>
         <TextInput textAlign={'center'} style={styles.input}
           onChangeText={goal => context.setGoal(goal)}
         ></TextInput>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 30,
     fontWeight: "bold",
-    fontFamily: 'menlo'
+
   },
   emoji: {
     fontSize: 50
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: 'white',
     marginBottom: 5,
-    fontFamily: 'menlo'
+
   },
   inputContainer: {
     marginBottom: 20,

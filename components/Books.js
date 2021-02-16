@@ -23,8 +23,8 @@ export default function Books() {
 
 
   return (
-    <View style={styles.main}>
-      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'start'} horizontal style={styles.scroll}>
+    <ScrollView vertical style={styles.main}>
+      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal style={styles.scroll}>
         {
           data.map((book, i) => (
             <TouchableOpacity onPress={() => { context.setRead(book) }} style={styles.image} key={i}>
@@ -32,8 +32,8 @@ export default function Books() {
                 uri: book.book_image,
               }}
                 style={{
-                  width: 218,
-                  height: 326,
+                  width: 200,
+                  height: 308,
                   margin: 'auto'
                 }} />
             </TouchableOpacity>
@@ -41,14 +41,17 @@ export default function Books() {
         }
       </ScrollView>
       <Text style={styles.sectionText}>Fiction</Text>
-      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'start'} horizontal >
+      <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal contentContainerStyle={{ width: `${100 * 15}%` }} >
         {
           nonFict.map((book, i) => (
-            <TouchableOpacity onPress={() => { context.setRead(book) }} style={styles.image} key={i}>
+            <TouchableOpacity onPress={(e) => {
+              e.preventDefault()
+              context.setRead(book)
+            }} style={styles.image} key={i}>
               <Image source={{
                 uri: book.book_image,
               }}
-                style={{ width: 218, height: 326, margin: 'auto' }} />
+                style={{ width: 200, height: 308, margin: 'auto' }} />
 
             </TouchableOpacity>
           ))
@@ -56,7 +59,7 @@ export default function Books() {
 
       </ScrollView>
       <Text style={styles.sectionText}>NonFiction</Text>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -65,7 +68,8 @@ const styles = StyleSheet.create({
   main: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly'
+
+    height: '100%'
   },
   scroll: {
     flex: 4,

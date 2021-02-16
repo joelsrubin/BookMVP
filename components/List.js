@@ -41,12 +41,10 @@ export default function List() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>I Finished!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => addToList(curBook)}
             >
-              <Text style={styles.textStyle}>⬆️</Text>
+              <Button onPress={() => addToList(curBook)} title="done"></Button>
             </Pressable>
           </View>
         </View>

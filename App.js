@@ -89,7 +89,7 @@ export default function App() {
   const TabScreen = () => {
     return (
       <Tab.Navigator>
-        <Tab.Screen name="Progress" component={Progress} />
+        <Tab.Screen name="Progress" component={Progress} options={{ tabBarBadge: read.length }} />
         <Tab.Screen name="Books" component={Books} />
       </Tab.Navigator>
     );
