@@ -3,17 +3,11 @@ import { Pressable, Modal, StatusBar, Animated, ActivityIndicator, Button, Style
 import List from './List'
 import Context from '../context.js'
 
-function Bar({ name, step, goal, height }) {
-
-  const [width, setWidth] = useState(0)
-  const getPercent = () => {
-    let percent = (step / goal) * 100
-    return percent
-  }
+function Bar({ percent, moveAnim, name, step, goal, height }) {
 
 
 
-
+  console.log('moveAnim:', moveAnim)
 
   return (
     <>
@@ -22,29 +16,21 @@ function Bar({ name, step, goal, height }) {
         {step}/{goal}
       </Text>
       <View
-        onLayout={(e) => {
-          const newWidth = e.nativeEvent.layout.width;
-          setWidth(newWidth)
-        }}
         style={{
           height,
           backgroundColor: 'rgba(0,0,0,0.1)',
           borderRadius: height,
           overflow: 'hidden',
-
         }}>
         <Animated.View
-
           style={{
             height,
-            width: `${getPercent()}%`,
+            width: moveAnim,
             backgroundColor: 'rgba(0,0,0,0.5)',
             borderRadius: height,
             position: 'absolute',
             left: 0,
             top: 0,
-
-
           }} />
       </View>
     </>
@@ -57,14 +43,31 @@ export default function Progress({ navigation, route }) {
 
   const goal = context.goal || 10
   const name = context.name || 'Test'
+  let percent = (step / goal) * 100
+  console.log("percent:", percent)
 
+  const moveAnim = new Animated.Value(0);
+  console.log(moveAnim)
+
+  const moveRight = () => {
+    Animated.timing(moveAnim, {
+      toValue: (step / goal) * 340,
+      duration: 1000,
+      useNativeDriver: false
+    }).start()
+  };
+
+  useEffect(() => {
+    moveRight()
+  }, [step])
 
   return (
 
     <View style={styles.container}>
       <StatusBar hidden />
-      <Bar name={name} style={styles.bar} step={step} goal={goal} height={20} />
-      <List />
+      {/* <Button onPress={moveRight} title="move it"></Button> */}
+      <Bar percent={percent} moveAnim={moveAnim} name={name} style={styles.bar} step={step} goal={goal} height={20} />
+      <List percent={percent} moveRight={moveRight} />
       <View style={styles.buttonCon}>
         <Button onPress={() => { navigation.navigate('Social') }} title="all done?"></Button>
         <Button onPress={context.clearRead} title="clear list"></Button>

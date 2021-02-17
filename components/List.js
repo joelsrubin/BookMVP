@@ -3,15 +3,18 @@ import { Pressable, Modal, ScrollView, Image, SectionList, SafeAreaView, StatusB
 import Context from '../context.js'
 
 
-export default function List() {
+export default function List({ moveRight, percent }) {
   let context = useContext(Context);
   const DATA = context.read || []
   const [modalVisible, setModalVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
+
   const addToList = async (val) => {
+
     await context.setDone(val)
     await setModalVisible(!modalVisible)
+
 
   }
 
@@ -47,7 +50,7 @@ export default function List() {
       <ScrollView horizontal style={styles.scroll}>
         {context.done.map((item, i) => (
           <Pressable
-            key={i}
+            key={item.title}
             onPress={() => resetCurBook(item)}
           >
             <View style={styles.image} >
@@ -63,7 +66,7 @@ export default function List() {
       <ScrollView horizontal style={styles.scroll}>
         {DATA.map((item, i) => (
           <Pressable
-            key={i}
+            key={item.title}
             onPress={() => resetCurBook(item)}
           >
             <View style={styles.image} >

@@ -7,7 +7,8 @@ import Context from '../context.js'
 
 const { width } = Dimensions.get('window')
 
-export default function Books() {
+function Books() {
+
   let context = useContext(Context)
   const data = context.data.results.books
   const nonFict = context.nonFiction.results.books
@@ -18,7 +19,7 @@ export default function Books() {
       <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal style={styles.scroll}>
         {
           data.map((book, i) => (
-            <TouchableOpacity onPress={() => { context.setRead(book) }} style={styles.image} key={i}>
+            <TouchableOpacity onPress={() => { context.setRead(book) }} style={styles.image} key={book.title}>
               <Image source={{
                 uri: book.book_image,
               }}
@@ -50,8 +51,8 @@ export default function Books() {
       <Text style={styles.sectionText}>NonFiction</Text>
     </ScrollView>
   );
-}
-
+};
+export default Books
 const styles = StyleSheet.create({
 
   main: {
