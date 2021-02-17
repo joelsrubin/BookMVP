@@ -5,18 +5,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-// import Menu from './components/Menu'
 import Home from './components/Home'
 import Books from './components/Books'
 import Social from './components/Social'
-// import Donut from './components/Donut'
 import Progress from './components/Progress'
 import { API } from './components/utils';
 import BooksContext from './context'
 import axios from 'axios';
 
 const Stack = createStackNavigator()
-
 
 
 export default function App() {
@@ -29,9 +26,6 @@ export default function App() {
   const [read, setRead] = useState([])
   const [done, setDone] = useState([])
   const [date, setDate] = useState(new Date)
-
-
-
 
   useEffect(() => {
     const fetchBooks = () => {
@@ -49,7 +43,9 @@ export default function App() {
         })
     }
     fetchBooks()
-  }, [genre])
+  }, [])
+
+
 
   const genreClick = (val) => {
     setGenre(val)
@@ -76,8 +72,6 @@ export default function App() {
       setDone([...done, val])
     }
     if (read.includes(val)) {
-      console.log("read", read)
-      console.log("val", val)
       let index = read.indexOf(val)
       let arr = read
       arr.splice(index, 1)
@@ -92,6 +86,7 @@ export default function App() {
   }
 
   const Tab = createBottomTabNavigator();
+
   const TabScreen = () => {
     return (
       <Tab.Navigator>
@@ -100,7 +95,6 @@ export default function App() {
       </Tab.Navigator>
     );
   }
-
 
   return (
     <BooksContext.Provider
@@ -139,7 +133,7 @@ export default function App() {
       </NavigationContainer>
     </BooksContext.Provider>
   )
-}
+};
 
 
 

@@ -3,9 +3,6 @@ import { RefreshControl, Image, SafeAreaView, TouchableOpacity, ScrollView, Flat
 import { StatusBar } from 'expo-status-bar';
 import Context from '../context.js'
 
-const wait = (timeout) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-}
 
 
 const { width } = Dimensions.get('window')
@@ -14,13 +11,6 @@ export default function Books() {
   let context = useContext(Context)
   const data = context.data.results.books
   const nonFict = context.nonFiction.results.books
-  console.log("context:", context)
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
 
 
   return (
@@ -45,10 +35,9 @@ export default function Books() {
       <ScrollView pagingEnabled decelerationRate={"slow"} snapToAlignment={'center'} horizontal  >
         {
           nonFict.map((book, i) => (
-            <TouchableOpacity onPress={(e) => {
-              e.preventDefault()
+            <TouchableOpacity onPress={() => {
               context.setRead(book)
-            }} style={styles.image} key={i}>
+            }} style={styles.image} key={book.title}>
               <Image source={{
                 uri: book.book_image,
               }}
@@ -57,12 +46,11 @@ export default function Books() {
             </TouchableOpacity>
           ))
         }
-
       </ScrollView>
       <Text style={styles.sectionText}>NonFiction</Text>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
 
