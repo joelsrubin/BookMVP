@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { Pressable, Modal, ScrollView, Image, SectionList, SafeAreaView, StatusBar, Animated, ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, Pressable, Modal, ScrollView, Image, SectionList, SafeAreaView, StatusBar, Animated, ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
 import Context from '../context.js'
 
 
-export default function List({ moveRight, percent }) {
+export default function List() {
   let context = useContext(Context);
   const DATA = context.read || []
   const [modalVisible, setModalVisible] = useState(false)
@@ -42,7 +42,9 @@ export default function List({ moveRight, percent }) {
             <Pressable
               style={[styles.button, styles.buttonClose]}
             >
-              <Button onPress={() => addToList(curBook)} title="✅"></Button>
+              <TouchableOpacity onPress={() => addToList(curBook)}>
+                <Text style={styles.emoji}>⬆️</Text>
+              </TouchableOpacity>
             </Pressable>
           </View>
         </View>
@@ -84,6 +86,9 @@ export default function List({ moveRight, percent }) {
 }
 
 const styles = StyleSheet.create({
+  emoji: {
+    fontSize: 50
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

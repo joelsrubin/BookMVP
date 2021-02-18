@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
           onChangeText={text => context.setName(text)}
         ></TextInput>
         <Text >Goal</Text>
-        <TextInput textAlign={'center'} style={styles.input}
+        <TextInput keyboardType={'numeric'} textAlign={'center'} style={styles.input}
           onChangeText={goal => context.setGoal(goal)}
         ></TextInput>
         <View style={styles.buttonContainer}>

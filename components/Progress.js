@@ -67,7 +67,7 @@ export default function Progress({ navigation, route }) {
       <StatusBar hidden />
       {/* <Button onPress={moveRight} title="move it"></Button> */}
       <Bar percent={percent} moveAnim={moveAnim} name={name} style={styles.bar} step={step} goal={goal} height={20} />
-      <List percent={percent} moveRight={moveRight} />
+      <List />
       <View style={styles.buttonCon}>
         <Button onPress={() => { navigation.navigate('Social') }} title="all done?"></Button>
         <Button onPress={context.clearRead} title="clear list"></Button>

@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useContext } from 'react';
-import { RefreshControl, Image, SafeAreaView, TouchableOpacity, ScrollView, FlatList, Button, StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Image, SafeAreaView, TouchableOpacity, ScrollView, Button, StyleSheet, Text, View, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Context from '../context.js'
 

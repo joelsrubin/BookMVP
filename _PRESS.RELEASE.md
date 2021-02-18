@@ -19,10 +19,10 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
   > Book It is a fun way to see what's popular and to challenge yourself to read something new.
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "I needed an excuse to get started on a new book. Challenging myself to complete a goal felt like a great way to do just that!"
 ## How to Get Started ##
   > You simply give your name and your goal, select books for your to-read list, and check them off as you go.
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I just couldn't figure out where to start. With Book It, I have a list of the books everyones reading so I'm current on the tea"
 ## Closing and Call to Action ##
-  >
+  > "We're spending more time than ever inside, with Book It, you can optimize your time and get started on a great book!"

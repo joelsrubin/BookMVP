@@ -27,7 +27,7 @@ export default function Social() {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `Thanks Book It! You motivated me to finish ${context.done.length} books in ${timeCalc()} Learn more at www.joelrubin.dev`,
+        message: `Thanks Book It! You motivated me to finish ${context.done.length} books in ${timeCalc()} Learn more at www.joelrubin.dev #HiLO`,
       })
 
     } catch (err) {
